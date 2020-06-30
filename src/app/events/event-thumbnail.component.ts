@@ -21,6 +21,10 @@ import { Component, Input } from '@angular/core';
   `,
   styles: [
     `
+      .thumbnail {
+        min-height: 210px;
+      }
+
       .pad-left {
         margin-left: 10px;
       }
