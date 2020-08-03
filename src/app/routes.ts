@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+
+import { Error404Component } from './errors/404.component';
 import {
   EventsListComponent,
   EventDetailsComponent,
@@ -6,8 +8,6 @@ import {
   EventRouteActivator,
   EventsListResolver
 } from './events/index';
-
-import { Error404Component } from './errors/404.component';
 
 export const appRoutes: Routes = [
   {

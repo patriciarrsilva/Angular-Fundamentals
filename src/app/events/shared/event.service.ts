@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
+
 import { IEvent } from './event.model';
 
 const EVENTS: IEvent[] = [
