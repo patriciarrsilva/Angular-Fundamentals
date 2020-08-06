@@ -30,10 +30,10 @@ export class LoginComponent {
       formValues.userName,
       formValues.password
     );
-    this.router.navigate(['events']);
+    this.router.navigate(['/events']);
   }
 
   cancel() {
-    this.router.navigate(['events']);
+    this.router.navigate(['/events']);
   }
 }
