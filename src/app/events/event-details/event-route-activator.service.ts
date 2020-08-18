@@ -4,7 +4,7 @@ import {
   ActivatedRouteSnapshot,
   Router
 } from '@angular/router';
-import { EventService } from '../shared/event.service';
+import { EventService } from '../shared/index';
 
 @Injectable({
   providedIn: 'root'
