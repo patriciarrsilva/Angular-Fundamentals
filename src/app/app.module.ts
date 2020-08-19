@@ -6,6 +6,7 @@ import {
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
+import { CollapsibleWellComponent } from './common/collapsible-well.component';
 import {
   EventsListComponent,
   EventThumbnailComponent,
@@ -35,7 +36,8 @@ import { appRoutes } from './routes';
     CreateEventComponent,
     Error404Component,
     CreateSessionComponent,
-    SessionListComponent
+    SessionListComponent,
+    CollapsibleWellComponent
   ],
   providers: [
     {
