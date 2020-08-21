@@ -14,6 +14,7 @@
 
 button {
   color: #555;
+  margin-right: 5px;
 }
 
 [hidden] {
