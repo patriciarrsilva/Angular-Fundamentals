@@ -8,6 +8,10 @@ import { RouterModule } from '@angular/router';
 
 import { CollapsibleWellComponent } from './common/collapsible-well.component';
 import {
+  TOASTR_TOKEN,
+  Toastr
+} from './common/toastr.service';
+import {
   EventsListComponent,
   EventThumbnailComponent,
   EventDetailsComponent,
@@ -20,6 +24,8 @@ import { EventsAppComponent } from './events-app.component';
 import { Error404Component } from './errors/404.component';
 import { NavBarComponent } from './nav/navbar.component';
 import { appRoutes } from './routes';
+
+const toastr: Toastr = window['toastr'];
 
 @NgModule({
   imports: [
@@ -42,6 +48,10 @@ import { appRoutes } from './routes';
     DurationPipe
   ],
   providers: [
+    {
+      provide: TOASTR_TOKEN,
+      useValue: toastr
+    },
     {
       provide: 'canDeactivateCreateEvent',
       useValue: checkDirtyState
