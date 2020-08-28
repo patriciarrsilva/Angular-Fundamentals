@@ -10,7 +10,8 @@ import {
   JQ_TOKEN,
   TOASTR_TOKEN,
   Toastr,
-  CollapsibleWellComponent
+  CollapsibleWellComponent,
+  SimpleModalComponent
 } from './common/index';
 import {
   EventsListComponent,
@@ -47,12 +48,17 @@ const jQuery = window['$'];
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
+    SimpleModalComponent,
     DurationPipe
   ],
   providers: [
     {
       provide: TOASTR_TOKEN,
       useValue: toastr
+    },
+    {
+      provide: JQ_TOKEN,
+      useValue: jQuery
     },
     {
       provide: 'canDeactivateCreateEvent',
