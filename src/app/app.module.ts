@@ -6,11 +6,12 @@ import {
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
-import { CollapsibleWellComponent } from './common/collapsible-well.component';
 import {
+  JQ_TOKEN,
   TOASTR_TOKEN,
-  Toastr
-} from './common/toastr.service';
+  Toastr,
+  CollapsibleWellComponent
+} from './common/index';
 import {
   EventsListComponent,
   EventThumbnailComponent,
@@ -26,6 +27,7 @@ import { NavBarComponent } from './nav/navbar.component';
 import { appRoutes } from './routes';
 
 const toastr: Toastr = window['toastr'];
+const jQuery = window['$'];
 
 @NgModule({
   imports: [
