@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
   selector: 'simple-modal',
   template: `
     <div
-      id="simple-modal"
+      id="{{ elementId }}"
       class="modal fade"
       tabindex="-1"
     >
@@ -38,4 +38,5 @@ import { Component, Input } from '@angular/core';
 })
 export class SimpleModalComponent {
   @Input() title: string;
+  @Input() elementId: string;
 }
