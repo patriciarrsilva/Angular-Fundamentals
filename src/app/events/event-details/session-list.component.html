@@ -1,4 +1,11 @@
 <div class="row" *ngFor="let session of visibleSessions">
+  <div class="col-md-1">
+    <upvote
+      [count]="session.voters.length"
+      [voted]="userHasVoted(session)"
+      (vote)="toggleVote(session)"
+    ></upvote>
+  </div>
   <div class="col-md-10">
     <collapsible-well>
       <div well-title>
@@ -6,7 +13,7 @@
         <i
           *ngIf="session.voters.length > 3"
           class="glyphicon glyphicon-fire"
-          style="color: red;"
+          style="color: red"
         ></i>
       </div>
 
