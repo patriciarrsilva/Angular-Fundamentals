@@ -16,12 +16,8 @@ import {
       <div class="well voting-widget">
         <div class="voting-button">
           <i
-            *ngIf="voted"
             class="glyphicon glyphicon-heart"
-          ></i>
-          <i
-            *ngIf="!voted"
-            class="glyphicon glyphicon-heart-empty"
+            [style.color]="iconColor"
           ></i>
         </div>
 
@@ -34,8 +30,11 @@ import {
 })
 export class UpvoteComponent {
   @Input() count: number;
-  @Input() voted: boolean;
+  @Input() set voted(val) {
+    this.iconColor = val ? 'red' : 'white';
+  }
   @Output() vote = new EventEmitter();
+  iconColor: string;
 
   onClick() {
     this.vote.emit();
