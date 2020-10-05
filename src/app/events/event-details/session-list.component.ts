@@ -19,7 +19,7 @@ export class SessionListComponent implements OnChanges {
   visibleSessions: ISession[];
 
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
     private voterService: VoterService
   ) {}
 
