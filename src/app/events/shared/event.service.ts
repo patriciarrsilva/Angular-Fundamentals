@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, EventEmitter } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import { IEvent, ISession } from './event.model';
 
@@ -27,11 +29,7 @@ const EVENTS: IEvent[] = [
         how to write them, and how to get the new AI CLI to write
         them for you. Given by the famous PBD, president of Angular
         University (formerly Oxford University)`,
-        voters: [
-          'bradgreen',
-          'igorminar',
-          'martinfowler'
-        ]
+        voters: ['bradgreen', 'igorminar', 'martinfowler']
       },
       {
         id: 2,
@@ -170,11 +168,7 @@ const EVENTS: IEvent[] = [
         know how the source code is really written? In this exciting look
         into the internals of Angular 4, we'll see exactly how Elm powers
         the framework, and what you can do to take advantage of this knowledge.`,
-        voters: [
-          'bradgreen',
-          'martinfowler',
-          'igorminar'
-        ]
+        voters: ['bradgreen', 'martinfowler', 'igorminar']
       },
       {
         id: 2,
@@ -334,15 +328,26 @@ const EVENTS: IEvent[] = [
   providedIn: 'root'
 })
 export class EventService {
+  constructor(private http: HttpClient) {}
+
   getEvents(): Observable<IEvent[]> {
-    const subject = new Subject<IEvent[]>();
+    return this.http
+      .get<IEvent[]>('/api/events')
+      .pipe(
+        catchError(
+          this.handleError<IEvent[]>('getEvents', [])
+        )
+      );
+  }
 
-    setTimeout(() => {
-      subject.next(EVENTS);
-      subject.complete();
-    }, 100);
-
-    return subject;
+  private handleError<T>(
+    operation = 'operation',
+    result?: T
+  ) {
+    return (error: any): Observable<T> => {
+      console.log(error);
+      return of(result as T);
+    };
   }
 
   getEvent(id: number): IEvent {
