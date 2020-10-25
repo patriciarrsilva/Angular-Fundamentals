@@ -1,4 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders
+} from '@angular/common/http';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -331,8 +334,10 @@ export class EventService {
   constructor(private http: HttpClient) {}
 
   getEvents(): Observable<IEvent[]> {
+    const url = '/api/events';
+
     return this.http
-      .get<IEvent[]>('/api/events')
+      .get<IEvent[]>(url)
       .pipe(
         catchError(
           this.handleError<IEvent[]>('getEvents', [])
@@ -341,24 +346,31 @@ export class EventService {
   }
 
   getEvent(id: number): Observable<IEvent> {
+    const url = '/api/events/' + id;
+
     return this.http
-      .get<IEvent>('/api/events/' + id)
+      .get<IEvent>(url)
       .pipe(
         catchError(this.handleError<IEvent>('getEvent'))
       );
   }
 
-  saveEvent(event) {
-    event.id = 999;
-    event.session = [];
-    EVENTS.push(event);
-  }
+  saveEvent(event: IEvent) {
+    const url = '/api/events';
 
-  updateEvent(event) {
-    const index = EVENTS.findIndex(
-      EVENT => (EVENT.id = event.id)
-    );
-    EVENTS[index] = event;
+    const body = event;
+
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+
+    return this.http
+      .post<IEvent>(url, body, options)
+      .pipe(
+        catchError(this.handleError<IEvent>('saveEvent'))
+      );
   }
 
   searchSessions(searchTerm: string) {
