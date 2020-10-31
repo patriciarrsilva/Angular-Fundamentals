@@ -373,31 +373,19 @@ export class EventService {
       );
   }
 
-  searchSessions(searchTerm: string) {
-    const term = searchTerm.toLocaleLowerCase();
-    let results: ISession[] = [];
+  searchSessions(
+    searchTerm: string
+  ): Observable<ISession[]> {
+    const url =
+      '/api/sessions/search?search=' + searchTerm;
 
-    EVENTS.forEach(event => {
-      const matchingSessions = event.sessions
-        .filter(
-          session =>
-            session.name
-              .toLocaleLowerCase()
-              .indexOf(term) > -1
+    return this.http
+      .get<ISession[]>(url)
+      .pipe(
+        catchError(
+          this.handleError<ISession[]>('searchSessions')
         )
-        .map((session: any) => {
-          session.eventId = event.id;
-          return session;
-        });
-
-      results = results.concat(matchingSessions);
-    });
-
-    const emitter = new EventEmitter(true);
-
-    setTimeout(() => emitter.emit(results), 100);
-
-    return emitter;
+      );
   }
 
   private handleError<T>(
