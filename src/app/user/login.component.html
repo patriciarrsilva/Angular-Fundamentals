@@ -69,4 +69,8 @@
       Cancel
     </button>
   </form>
+  <br />
+  <div *ngIf="!isLoginValid" class="alert alert-danger">
+    Invalid Login Info
+  </div>
 </div>
