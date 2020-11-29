@@ -17,8 +17,7 @@
         <em
           *ngIf="
             !validateFirstName() &&
-            profileForm.controls.firstName.errors
-              .required
+            profileForm.controls.firstName.errors.required
           "
         >
           Required
@@ -65,6 +64,15 @@
         (click)="cancel()"
       >
         Cancel
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-warning"
+        style="float: right"
+        (click)="logout()"
+      >
+        Logout
       </button>
     </form>
   </div>
