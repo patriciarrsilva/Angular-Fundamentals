@@ -1,4 +1,7 @@
-import { DebugElement } from '@angular/core';
+import {
+  DebugElement,
+  NO_ERRORS_SCHEMA
+} from '@angular/core';
 import {
   async,
   ComponentFixture,
@@ -8,7 +11,6 @@ import { By } from '@angular/platform-browser';
 import { CollapsibleWellComponent } from 'src/app/common';
 import { AuthService } from 'src/app/user/auth.service';
 import { DurationPipe } from '../shared';
-import { ISession } from '../shared/event.model';
 import { SessionListComponent } from './session-list.component';
 import { UpvoteComponent } from './upvote.component';
 import { VoterService } from './voter.service';
@@ -32,9 +34,9 @@ describe('SessionListComponent', () => {
       imports: [],
       declarations: [
         SessionListComponent,
-        UpvoteComponent,
-        DurationPipe,
-        CollapsibleWellComponent
+        // UpvoteComponent,
+        DurationPipe
+        // CollapsibleWellComponent
       ],
       providers: [
         {
@@ -46,7 +48,7 @@ describe('SessionListComponent', () => {
           useValue: mockVoterService
         }
       ],
-      schemas: []
+      schemas: [NO_ERRORS_SCHEMA]
     });
   }));
 
