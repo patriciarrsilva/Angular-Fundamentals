@@ -5,7 +5,10 @@ import {
   ReactiveFormsModule
 } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import {
+  PreloadAllModules,
+  RouterModule
+} from '@angular/router';
 
 import {
   JQ_TOKEN,
@@ -39,7 +42,9 @@ const jQuery = window['$'];
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {
+      preloadingStrategy: PreloadAllModules
+    }),
     HttpClientModule
   ],
   declarations: [
